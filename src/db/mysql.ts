@@ -8,7 +8,8 @@ export default class Repository {
   constructor() {
     this.pool = mysql.createPool({
       connectionLimit: 10,
-      host: "my8001.gabiadb.com:3306",
+      host: "211.47.74.38",
+      port: 3306,
       user: config.MYSQL.USER,
       password: config.MYSQL.PASSWORD,
       database: config.MYSQL.DB,
@@ -24,6 +25,7 @@ export default class Repository {
       res = await connection.query(sql, values);
       return res;
     } catch (err) {
+      if (err instanceof Error) console.log(err.message);
       throw new DBError({
         name: "DB_Error",
         message: "DB 처리 중 오류가 발생했습니다",

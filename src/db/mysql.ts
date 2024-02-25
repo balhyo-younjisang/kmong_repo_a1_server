@@ -8,7 +8,7 @@ export default class Repository {
   constructor() {
     this.pool = mysql.createPool({
       connectionLimit: 10,
-      host: "my8001.gabiadb.com",
+      host: "my8001.gabiadb.com:3306",
       user: config.MYSQL.USER,
       password: config.MYSQL.PASSWORD,
       database: config.MYSQL.DB,

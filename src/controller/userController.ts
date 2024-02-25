@@ -3,7 +3,7 @@ import Container from "typedi";
 import { UserService } from "../service/userService";
 
 export class UserController {
-  serviceInstance: any;
+  private serviceInstance: any;
 
   constructor() {
     this.serviceInstance = Container.get(UserService);
@@ -33,5 +33,17 @@ export class UserController {
     });
 
     return res.status(response.code).json({ ...response });
+  };
+
+  handlePatchEntire = async (req: Request, res: Response) => {
+    const { phoneNumber } = res.locals;
+    const { send_count } = req.body;
+
+    const response = await this.serviceInstance.patchUserEntire({
+      phoneNumber,
+      patch_data: send_count,
+    });
+
+    return res.status(response.code).json({ message: "수정 완료" });
   };
 }

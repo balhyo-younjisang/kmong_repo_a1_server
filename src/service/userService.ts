@@ -63,4 +63,29 @@ export class UserService {
 
     return { code: 200, message: "로그인 성공", data: token };
   };
+
+  patchUserEntire = async ({
+    phoneNumber,
+    patch_data,
+  }: {
+    phoneNumber: string;
+    patch_data: string;
+  }) => {
+    const find_sql = "SELECT * FROM USER WHERE PHONE_NUMBER = ?;";
+    const find_values = [phoneNumber];
+
+    const [find_res]: any = await this.repository.executeQuery(
+      find_sql,
+      find_values
+    );
+
+    const sql = "UPDATE USER SET ENTIRE_SEND = ? WHERE PHONE_NUMBER = ?;";
+    const values = [
+      parseInt(find_res[0].entire_send) + parseInt(patch_data),
+      phoneNumber,
+    ];
+
+    await this.repository.executeQuery(sql, values);
+    return { code: 200 };
+  };
 }

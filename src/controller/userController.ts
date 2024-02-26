@@ -46,4 +46,12 @@ export class UserController {
 
     return res.status(response.code).json({ message: "수정 완료" });
   };
+
+  handleMyData = async (req: Request, res: Response) => {
+    const { phoneNumber } = res.locals;
+
+    const response = await this.serviceInstance.getUserData({ phoneNumber });
+
+    return res.status(response.code).json({ ...response });
+  };
 }

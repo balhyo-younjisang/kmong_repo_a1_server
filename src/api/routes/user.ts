@@ -13,4 +13,5 @@ export default (app: Router) => {
     .route("/edit")
     .all(verifyMiddleware)
     .patch(controller.handlePatchEntire);
+  route.route("/my").all(verifyMiddleware).get(controller.handleMyData);
 };

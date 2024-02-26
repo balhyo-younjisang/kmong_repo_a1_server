@@ -93,7 +93,7 @@ export class UserService {
     const sql = "SELECT * FROM USER FROM WHERE PHONE_NUMBER = ?;";
     const values = [phoneNumber];
 
-    const [find_res]: any = this.repository.executeQuery(sql, values);
+    const [find_res]: any = await this.repository.executeQuery(sql, values);
 
     return {
       code: 200,

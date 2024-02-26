@@ -90,7 +90,7 @@ export class UserService {
   };
 
   getUserData = async ({ phoneNumber }: { phoneNumber: String }) => {
-    const sql = "SELECT * FROM USER FROM WHERE PHONE_NUMBER = ?;";
+    const sql = "SELECT * FROM USER WHERE PHONE_NUMBER = ?;";
     const values = [phoneNumber];
 
     const [find_res]: any = await this.repository.executeQuery(sql, values);

@@ -17,13 +17,7 @@ export default ({ app }: { app: express.Application }) => {
   });
 
   app.enable("trust proxy");
-  app.use(
-    cors({
-      origin: "*",
-      optionsSuccessStatus: 200,
-      credentials: true,
-    })
-  );
+  app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded());
   app.use(config.api.prefix, routes());
